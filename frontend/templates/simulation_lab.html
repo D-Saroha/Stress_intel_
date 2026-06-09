@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="fade-in">
+    <div class="card-header mb-6">
+        <div class="icon-box"><i class="fa-solid fa-flask-vial"></i></div>
+        <div>
+            <h2>Simulation <span class="text-accent">Lab</span></h2>
+            <p>Forecast your stress trajectory by modifying lifestyle variables.</p>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="glass-card">
+            <h3>Lifestyle Modifiers</h3>
+            <p class="text-muted text-sm mb-6">Adjust sliders to see how changes impact your future stress levels.</p>
+            
+            <div class="slider-group">
+                <div class="flex-between">
+                    <label>Sleep Hours</label>
+                    <span id="val-sleep" class="badge">7h</span>
+                </div>
+                <input type="range" id="sim-sleep" class="styled-slider" min="0" max="12" value="7">
+            </div>
+
+            <div class="slider-group mt-4">
+                <div class="flex-between">
+                    <label>Study Hours</label>
+                    <span id="val-study" class="badge">6h</span>
+                </div>
+                <input type="range" id="sim-study" class="styled-slider" min="0" max="15" value="6">
+            </div>
+
+            <div class="slider-group mt-4">
+                <div class="flex-between">
+                    <label>Physical Activity</label>
+                    <span id="val-physical" class="badge">30m</span>
+                </div>
+                <input type="range" id="sim-physical" class="styled-slider" min="0" max="120" value="30">
+            </div>
+
+            <button id="run-simulation" class="btn btn-primary w-full mt-6">
+                <i class="fa-solid fa-play"></i> Recalculate Trajectory
+            </button>
+        </div>
+
+        <div class="glass-card">
+            <h3>7-Day Stress Forecast</h3>
+            <div class="chart-container">
+                <canvas id="simulation-chart"></canvas>
+            </div>
+            <div id="simulation-insight" class="mt-4 p-4 bg-glass border-l-4 border-accent text-sm italic">
+                Awaiting simulation parameters...
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.slider-group label { font-size: 0.85rem; color: var(--text-muted); }
+.badge { background: rgba(6, 182, 212, 0.1); color: var(--accent-orange); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; }
+.styled-slider { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 5px; background: rgba(255,255,255,0.05); outline: none; margin-top: 0.5rem; }
+.styled-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--accent-orange); cursor: pointer; border: 2px solid var(--primary-navy); }
+</style>
+{% endblock %}

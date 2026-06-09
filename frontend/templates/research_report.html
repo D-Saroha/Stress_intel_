@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional Research Report - StressIntel PRO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #9D174D; /* Berry */
+            --accent: #F59E0B;  /* Amber */
+            --border: #E2E8F0;
+            --text: #1E293B;
+            --text-light: #64748B;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            line-height: 1.5;
+            margin: 0;
+            padding: 40px;
+            background: #fff;
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-area h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-area h1 span {
+            color: var(--accent);
+        }
+
+        .report-meta {
+            text-align: right;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .section-title {
+            background: #f8fafc;
+            padding: 8px 12px;
+            border-left: 4px solid var(--accent);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 25px 0 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .data-table th, .data-table td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table th {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .insight-box {
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        .visual-diagnostic {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .visual-diagnostic img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 10px;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
+
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print no-print" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print / Save as PDF
+    </button>
+
+    <div class="report-header">
+        <div class="logo-area">
+            <h1>STRESS<span>INTEL</span> PRO</h1>
+            <p style="margin: 5px 0 0; font-size: 12px; color: var(--text-light);">INSTITUTIONAL RESEARCH DIVISION</p>
+        </div>
+        <div class="report-meta">
+            <p><strong>REPORT ID:</strong> RL-{{ report_id }}</p>
+            <p><strong>DATE:</strong> {{ date }}</p>
+            <p><strong>CONFIDENTIAL</strong></p>
+        </div>
+    </div>
+
+    <div class="section-title">Student Behavioral Profile (21 Parameters)</div>
+    <div class="grid">
+        <table class="data-table">
+            <tr><th>Psychological</th><td>Anxiety: {{ data.anxiety_level }}% | Depression: {{ data.depression }}%</td></tr>
+            <tr><th>Academic Load</th><td>Study Load: {{ data.study_load }}/10 | Performance: {{ data.academic_performance }}/10</td></tr>
+            <tr><th>Environment</th><td>Safety: {{ data.safety }}/10 | Living: {{ data.living_conditions }}/10</td></tr>
+        </table>
+        <table class="data-table">
+            <tr><th>Physiological</th><td>Sleep: {{ data.sleep_quality }}/10 | Headache: {{ data.headache }}/10</td></tr>
+            <tr><th>Social</th><td>Support: {{ data.social_support }}/10 | Peer Pressure: {{ data.peer_pressure }}/10</td></tr>
+            <tr><th>History</th><td>MH History: {{ 'Yes' if data.mental_health_history == 1 else 'No' }} | Bullying: {{ 'Yes' if data.bullying == 1 else 'No' }}</td></tr>
+        </table>
+    </div>
+
+    <div class="section-title">Clinical AI Interpretation (Llama 3)</div>
+    <div class="insight-box">
+        {{ insight | safe }}
+    </div>
+
+    {% if visual_analysis %}
+    <div class="section-title">Visual Biomarker Diagnostic</div>
+    <div class="visual-diagnostic">
+        <img src="{{ visual_analysis.annotated_image }}" alt="Annotated Diagnostic">
+        <div style="text-align: left; margin-top: 15px; font-size: 12px;">
+            <p><strong>Impact Score:</strong> {{ (visual_analysis.metadata.impact_score * 100) | round(1) }}%</p>
+            <p><strong>Detected Markers:</strong> {{ visual_analysis.metadata.stress_markers_detected | join(', ') }}</p>
+            <p><strong>Clinical Interpretation:</strong> <em>{{ visual_analysis.metadata.clinical_interpretation }}</em></p>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="page-break"></div>
+
+    <div class="section-title">Institutional Recommendations</div>
+    <div class="insight-box">
+        <ul style="margin: 0; padding-left: 20px;">
+            <li>Immediate clinical consultation recommended based on current stress markers.</li>
+            <li>Academic workload adjustment suggested to prevent cognitive burnout.</li>
+            <li>Implementation of environmental stabilizer protocols in living conditions.</li>
+            <li>Peer support group integration for social dynamic balancing.</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>This report was generated by StressIntel PRO Artificial Intelligence. It is intended for research and institutional guidance only.</p>
+        <p>&copy; 2026 StressIntel PRO Research Lab. All rights reserved.</p>
+    </div>
+</body>
+</html>

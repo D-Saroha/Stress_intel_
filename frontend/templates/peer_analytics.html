@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="fade-in">
+    <div class="card-header mb-6">
+        <div class="icon-box"><i class="fa-solid fa-users-viewfinder"></i></div>
+        <div>
+            <h2>Peer <span class="text-accent">Analytics</span></h2>
+            <p>Compare your stress biomarkers against the institutional cohort.</p>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="glass-card full-width">
+            <h3>Stress Spectrum Marker</h3>
+            <p class="text-muted text-sm mb-6">Your percentile rank relative to the student cohort.</p>
+            
+            <div class="spectrum-container">
+                <div class="spectrum-bar">
+                    <div class="spectrum-segment safe">LOW RISK</div>
+                    <div class="spectrum-segment warning">MEDIUM RISK</div>
+                    <div class="spectrum-segment danger">HIGH RISK</div>
+                    <div id="user-marker" class="spectrum-marker" style="left: 54%">
+                        <div class="marker-label">YOU</div>
+                        <div class="marker-arrow"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-4">You are in the <span class="text-accent font-bold" id="percentile-val">54th</span> percentile of student stress levels.</p>
+        </div>
+
+        <div class="glass-card">
+            <h3>Biomarker Distribution</h3>
+            <div class="chart-container">
+                <canvas id="distribution-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3>Peer Average vs You</h3>
+            <div class="chart-container">
+                <canvas id="comparison-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.spectrum-container {
+    padding: 2rem 0;
+}
+.spectrum-bar {
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    overflow: visible;
+    position: relative;
+    background: rgba(255,255,255,0.05);
+}
+.spectrum-segment {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+}
+.spectrum-segment.safe { background: rgba(6, 182, 212, 0.2); border-radius: 20px 0 0 20px; }
+.spectrum-segment.warning { background: rgba(245, 158, 11, 0.2); }
+.spectrum-segment.danger { background: rgba(244, 63, 94, 0.2); border-radius: 0 20px 20px 0; }
+
+.spectrum-marker {
+    position: absolute;
+    top: -40px;
+    transition: left 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.marker-label {
+    background: var(--accent-orange);
+    color: var(--primary-navy);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: 800;
+}
+.marker-arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--accent-orange);
+}
+</style>
+{% endblock %}

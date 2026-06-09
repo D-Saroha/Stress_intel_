@@ -1,0 +1,76 @@
+<!-- Sidebar Component -->
+<aside class="sidebar animate-fade-in">
+    <div class="sidebar-header">
+        <h2 class="brand-text" style="color: var(--light-blue); font-weight: 800;">SI-<span style="color: var(--accent-orange);">PRO</span></h2>
+        <p class="text-muted text-xs">Research Intelligence</p>
+    </div>
+
+    <ul class="nav-links">
+        <li class="nav-item">
+            <a href="/" class="nav-link" id="nav-home">
+                <i class="fa-solid fa-house"></i>
+                <span>Assessment</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/dashboard" class="nav-link" id="nav-dashboard">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/simulation-lab" class="nav-link" id="nav-simulation">
+                <i class="fa-solid fa-flask-vial"></i>
+                <span>Simulation Lab</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/peer-analytics" class="nav-link" id="nav-peer">
+                <i class="fa-solid fa-users-viewfinder"></i>
+                <span>Peer Analytics</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/mitigation-planner" class="nav-link" id="nav-mitigation">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Mitigation Plan</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/research-lab" class="nav-link" id="nav-research">
+                <i class="fa-solid fa-vial-virus"></i>
+                <span>Research Lab</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/about" class="nav-link" id="nav-about">
+                <i class="fa-solid fa-microchip"></i>
+                <span>Technical Specs</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="sidebar-footer">
+        <div class="glass-card footer-card">
+            <p class="text-xs">Model Version: <span class="text-accent">XGB-1.0</span></p>
+            <p class="text-xs">Inference: <span class="text-light">Active</span></p>
+        </div>
+    </div>
+</aside>
+
+<style>
+.sidebar-header {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.text-xs { font-size: 0.75rem; }
+.sidebar-footer {
+    margin-top: auto;
+}
+.footer-card {
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+}
+</style>

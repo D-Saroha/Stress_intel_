@@ -1,0 +1,52 @@
+<!-- Navbar Component -->
+<nav class="navbar glass-morphism">
+    <div class="brand">
+        <span class="text-accent"><i class="fa-solid fa-brain"></i></span>
+        <span class="brand-text">StressIntel <span class="text-accent">PRO</span></span>
+    </div>
+    <div class="user-profile">
+        <img src="https://ui-avatars.com/api/?name=User&background=F57E3E&color=fff" alt="User Avatar" class="avatar">
+        <span class="username">Researcher</span>
+    </div>
+</nav>
+
+<style>
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.brand {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-orange);
+}
+
+.username {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+</style>

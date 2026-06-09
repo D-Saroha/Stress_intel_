@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="fade-in">
+    <div class="card-header mb-6">
+        <div class="icon-box"><i class="fa-solid fa-list-check"></i></div>
+        <div>
+            <h2>Mitigation <span class="text-accent">Planner</span></h2>
+            <p>Personalized action plans to reduce stress levels based on your risk profile.</p>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="glass-card full-width">
+            <h3>Weekly Risk Density Heatmap</h3>
+            <p class="text-muted text-sm mb-6">Visualizing temporal stress spikes over a typical 7-day academic cycle.</p>
+            
+            <div id="heatmap-grid" class="heatmap-grid">
+                <!-- Heatmap cells injected by JS -->
+            </div>
+            
+            <div class="heatmap-legend mt-4">
+                <span>Risk Level:</span>
+                <div class="legend-item"><div class="cell l0"></div> Safe</div>
+                <div class="legend-item"><div class="cell l1"></div> Low</div>
+                <div class="legend-item"><div class="cell l2"></div> Med</div>
+                <div class="legend-item"><div class="cell l3"></div> High</div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3>Actionable Interventions</h3>
+            <p class="text-muted text-sm mb-4">Check off items to track your mitigation progress.</p>
+            
+            <div class="action-list">
+                <label class="action-item">
+                    <input type="checkbox" class="custom-check">
+                    <span>Digital Detox (No screens 1h before bed)</span>
+                </label>
+                <label class="action-item">
+                    <input type="checkbox" class="custom-check">
+                    <span>Vagus Nerve Stimulation (Deep Breathing)</span>
+                </label>
+                <label class="action-item">
+                    <input type="checkbox" class="custom-check">
+                    <span>Optimize Sleep Hygiene (Cool/Dark environment)</span>
+                </label>
+                <label class="action-item">
+                    <input type="checkbox" class="custom-check">
+                    <span>Physical Mobility (15m stretching)</span>
+                </label>
+                <label class="action-item">
+                    <input type="checkbox" class="custom-check">
+                    <span>Hydration Scaling (2.5L target)</span>
+                </label>
+            </div>
+            
+            <div class="progress-bar-container mt-6">
+                <p class="text-xs mb-1">Plan Completion <span id="progress-text" class="text-accent">0%</span></p>
+                <div class="progress-bg">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    gap: 4px;
+}
+.heatmap-cell {
+    aspect-ratio: 1;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.05);
+}
+.heatmap-cell.l0 { background: rgba(6, 182, 212, 0.2); }
+.heatmap-cell.l1 { background: rgba(74, 222, 128, 0.4); }
+.heatmap-cell.l2 { background: rgba(245, 158, 11, 0.6); }
+.heatmap-cell.l3 { background: rgba(244, 63, 94, 0.8); }
+
+.heatmap-legend { display: flex; gap: 1rem; align-items: center; font-size: 0.7rem; color: var(--text-muted); }
+.legend-item { display: flex; align-items: center; gap: 4px; }
+.legend-item .cell { width: 12px; height: 12px; border-radius: 2px; }
+
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.02);
+    border-radius: 0.8rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.action-item:hover { background: rgba(255,255,255,0.05); }
+.custom-check { width: 18px; height: 18px; accent-color: var(--accent-orange); }
+</style>
+{% endblock %}

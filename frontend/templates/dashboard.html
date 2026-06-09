@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="results-view" class="fade-in">
+    <div class="card-header mb-6">
+        <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+        <div>
+            <h2>Analysis <span class="text-accent">Dashboard</span></h2>
+            <p>Research-grade insights and XAI-driven explanations.</p>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="glass-card">
+            <p class="text-muted text-sm uppercase">Primary Prediction</p>
+            <h2 id="prediction-label" class="text-accent text-2xl mt-1">Analyzing...</h2>
+            <div class="progress-container mt-4">
+                <div id="risk-bar" class="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <p class="text-muted text-sm uppercase">Diagnostic Confidence</p>
+            <h2 id="probability-label" class="text-2xl mt-1">--%</h2>
+        </div>
+
+        <div class="glass-card">
+            <p class="text-muted text-sm uppercase">Primary Stressor</p>
+            <h2 id="top-stressor" class="text-2xl mt-1">--</h2>
+        </div>
+
+        <div class="glass-card full-width">
+            <h3>XAI: SHAP Influence Factors</h3>
+            <p class="text-muted text-sm mb-4">How each biomarker influenced your current stress prediction.</p>
+            <div class="chart-container">
+                <canvas id="shap-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3>Biomarker Spectrum</h3>
+            <div class="chart-container">
+                <canvas id="radar-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <div class="flex-between mb-4">
+                <h3><i class="fa-solid fa-file-medical text-accent"></i> Clinical Intelligence Report</h3>
+                <button class="btn btn-secondary btn-sm"><i class="fa-solid fa-download"></i> Export PDF</button>
+            </div>
+            <div id="report-content" class="report-area markdown-content">
+                <p class="text-muted">Generating clinical insights...</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

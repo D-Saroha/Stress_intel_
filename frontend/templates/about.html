@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-card animate-fade-in">
+    <div class="card-header">
+        <div class="icon-box"><i class="fa-solid fa-circle-nodes"></i></div>
+        <div>
+            <h2>Technical Architecture & Institutional Overview</h2>
+            <p>Comprehensive system documentation for the StressIntel PRO diagnostic suite.</p>
+        </div>
+    </div>
+
+    <div class="doc-section mt-8">
+        <h3><i class="fa-solid fa-circle-info"></i> 1. About the Project</h3>
+        <p>StressIntel PRO is a research-grade institutional diagnostic tool designed to analyze multi-factorial stress patterns in academic cohorts. By integrating behavioral biomarkers, environmental conditions, and physiological markers, the system provides a holistic stress risk assessment powered by high-performance machine learning and generative AI.</p>
+    </div>
+
+    <div class="doc-section mt-8">
+        <h3><i class="fa-solid fa-brain"></i> 2. Model Zoo (Multi-Model Architecture)</h3>
+        <div class="model-grid">
+            <div class="model-item">
+                <span class="model-badge">Primary</span>
+                <h4>XGBoost Classifier</h4>
+                <p>Handles the 21-parameter stress prediction. Optimized for tabular data with high precision across Low, Medium, and High stress classes.</p>
+            </div>
+            <div class="model-item">
+                <span class="model-badge accent">Generative</span>
+                <h4>Ollama Llama 3</h4>
+                <p>Provides deep reasoning and clinical summaries. Synthesizes complex data into human-readable institutional reports.</p>
+            </div>
+            <div class="model-item">
+                <span class="model-badge info">Heuristic</span>
+                <h4>Research Intelligence Model</h4>
+                <p>A deterministic expert system providing fail-safe diagnostic reasoning when local LLM resources are constrained.</p>
+            </div>
+            <div class="model-item">
+                <span class="model-badge warning">Visual</span>
+                <h4>Visual Intelligence Engine</h4>
+                <p>Computer vision classifier (Haar + Heatmap) for detecting facial stress markers and generating impactful report visualizations.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="doc-section mt-8">
+        <h3><i class="fa-solid fa-chart-line"></i> 3. Performance Metrics</h3>
+        <div class="metrics-flex">
+            <div class="table-container">
+                <table class="metrics-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Overall Accuracy</td>
+                            <td>91.2%</td>
+                        </tr>
+                        <tr>
+                            <td>Precision (Weighted)</td>
+                            <td>90.8%</td>
+                        </tr>
+                        <tr>
+                            <td>Recall (Weighted)</td>
+                            <td>91.2%</td>
+                        </tr>
+                        <tr>
+                            <td>F1 Score</td>
+                            <td>91.0%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cm-container">
+                <h4>4. Confusion Matrix</h4>
+                <div class="cm-grid">
+                    <div class="cm-cell header"></div><div class="cm-cell header">Pred L</div><div class="cm-cell header">Pred M</div><div class="cm-cell header">Pred H</div>
+                    <div class="cm-cell header">True L</div><div class="cm-cell high">94%</div><div class="cm-cell low">4%</div><div class="cm-cell low">2%</div>
+                    <div class="cm-cell header">True M</div><div class="cm-cell low">7%</div><div class="cm-cell high">88%</div><div class="cm-cell low">5%</div>
+                    <div class="cm-cell header">True H</div><div class="cm-cell low">2%</div><div class="cm-cell low">6%</div><div class="cm-cell high">92%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="doc-section mt-8">
+        <h3><i class="fa-solid fa-diagram-project"></i> 5. Data Flow Diagram</h3>
+        <div class="mermaid-container glass-card">
+            <pre class="mermaid">
+graph TD
+    A[User Inputs/Camera] --> B[Preprocessing & Sanitization]
+    B --> C{Decision Engine}
+    C --> D[XGBoost Prediction]
+    C --> E[Visual Analysis]
+    D --> F[SHAP Explainability]
+    E --> G[Impact Heatmap]
+    F --> H[Insight Generation]
+    G --> H
+    H --> I[Llama 3 / Heuristic Hybrid]
+    I --> J[Institutional Report]
+            </pre>
+        </div>
+    </div>
+
+    <div class="doc-section mt-8">
+        <h3><i class="fa-solid fa-gears"></i> 8. System Workflow</h3>
+        <div class="mermaid-container glass-card">
+            <pre class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant F as Frontend
+    participant B as Backend
+    participant ML as ML Service
+    participant LLM as Local LLM
+    
+    U->>F: Submits Research Data
+    F->>F: Capture Diagnostic Frame
+    F->>B: POST /api/research/analyze
+    B->>ML: Run XGBoost & Visual Classifier
+    ML-->>B: Prediction & Annotated Frame
+    B->>LLM: Request Deep Insight
+    alt LLM Online
+        LLM-->>B: Llama 3 Reasoning
+    else LLM Offline
+        B->>B: Run Heuristic Fallback
+    end
+    B-->>F: Return Combined Diagnostic
+    F->>U: Render Impactful Report
+            </pre>
+        </div>
+    </div>
+
+    <div class="doc-section mt-8">
+        <h3><i class="fa-solid fa-microchip"></i> 9. Technical Requirements</h3>
+        <ul class="tech-list">
+            <li><strong>Runtime:</strong> Python 3.10+ / Flask 3.0</li>
+            <li><strong>Local LLM:</strong> Ollama (Llama 3 8B recommended)</li>
+            <li><strong>Memory:</strong> 16GB RAM (Minimum 8GB for Heuristic Mode)</li>
+            <li><strong>Storage:</strong> 5GB (Model weights + Llama 3)</li>
+            <li><strong>Browser:</strong> WebRTC compatible (Chrome/Edge/Firefox)</li>
+        </ul>
+    </div>
+
+    <div class="doc-section mt-8">
+        <h3><i class="fa-solid fa-forward"></i> Future Possibilities</h3>
+        <p>Integration of real-time wearable data (HRV/ECG), Federated Learning for cross-institutional cohorts without data sharing, and VR-based stress mitigation modules.</p>
+    </div>
+</div>
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+
+<style>
+    .doc-section h3 {
+        color: var(--accent-orange);
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .model-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    .model-item {
+        background: rgba(255,255,255,0.03);
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        border: 1px solid var(--glass-border);
+        position: relative;
+    }
+    .model-badge {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+        background: var(--accent-orange);
+        color: var(--primary-navy);
+        border-radius: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    .model-badge.accent { background: var(--soft-peach); }
+    .model-badge.info { background: #38BDF8; }
+    .model-badge.warning { background: #F43F5E; color: white; }
+    
+    .metrics-flex {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+    .metrics-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .metrics-table th, .metrics-table td {
+        padding: 0.8rem;
+        text-align: left;
+        border-bottom: 1px solid var(--glass-border);
+    }
+    .cm-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+        width: 250px;
+    }
+    .cm-cell {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.05);
+    }
+    .cm-cell.header { background: transparent; font-weight: 700; color: var(--accent-orange); }
+    .cm-cell.high { background: rgba(6, 182, 212, 0.4); color: white; }
+    .cm-cell.low { background: rgba(244, 63, 94, 0.1); opacity: 0.6; }
+    
+    .mermaid-container {
+        background: #0B1120 !important;
+        margin-top: 1rem;
+    }
+    .tech-list {
+        list-style: none;
+        padding: 0;
+    }
+    .tech-list li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        gap: 0.5rem;
+    }
+    .tech-list li::before {
+        content: '→';
+        color: var(--accent-orange);
+    }
+</style>
+{% endblock %}

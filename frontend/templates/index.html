@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="glass-card animate-fade-in">
+    <div class="card-header">
+        <div class="icon-box"><i class="fa-solid fa-microscope"></i></div>
+        <div>
+            <h2>Neural Stress Assessment</h2>
+            <p>Input behavioral biomarkers for real-time risk analysis.</p>
+        </div>
+    </div>
+
+    <form id="assessment-form" class="assessment-grid">
+        <div class="input-row">
+            <div class="input-group">
+                <label>Sleep Hours (Last 24h)</label>
+                <input type="number" name="sleep_hours" value="7" min="0" max="24" required>
+            </div>
+            <div class="input-group">
+                <label>Study Hours</label>
+                <input type="number" name="study_hours" value="6" min="0" max="24" required>
+            </div>
+        </div>
+
+        <div class="input-row">
+            <div class="input-group">
+                <label>Physical Activity (min/day)</label>
+                <input type="number" name="physical_activity" value="30" min="0" max="300" required>
+            </div>
+            <div class="input-group">
+                <label>Social Interaction (min/day)</label>
+                <input type="number" name="social_interaction" value="60" min="0" max="600" required>
+            </div>
+        </div>
+
+        <div class="input-row">
+            <div class="input-group">
+                <label>Screen Time (hours)</label>
+                <input type="number" name="screen_time" value="4" min="0" max="24" required>
+            </div>
+            <div class="input-group">
+                <label>Diet Quality (1-10)</label>
+                <input type="number" name="diet_quality" value="8" min="1" max="10" required>
+            </div>
+        </div>
+
+        <div class="input-row">
+            <div class="input-group">
+                <label>Resting Heart Rate</label>
+                <input type="number" name="heart_rate" value="72" min="40" max="150" required>
+            </div>
+            <div class="input-group">
+                <label>Subjective Anxiety (0-100)</label>
+                <input type="number" name="anxiety_score" value="45" min="0" max="100" required>
+            </div>
+        </div>
+
+        <div class="assessment-section">
+            <h3><i class="fa-solid fa-pen-nib"></i> AI Deep Journal</h3>
+            <p class="text-muted text-xs mb-2">Reflect on your current emotional state. Our LLM will extract hidden stressors.</p>
+            <textarea name="journal_entry" placeholder="Example: I've been feeling overwhelmed by the upcoming finals, but I'm trying to stay organized..."></textarea>
+        </div>
+
+        <div class="assessment-section">
+            <h3><i class="fa-solid fa-camera"></i> Micro-Expression Scan</h3>
+            <div id="webcam-preview" class="webcam-container">
+                <div class="webcam-placeholder">
+                    <i class="fa-solid fa-camera"></i>
+                    <p>Camera standby</p>
+                </div>
+            </div>
+            <input type="hidden" name="face_data" id="face_data">
+            <button type="button" id="start-webcam" class="btn btn-secondary mt-2">
+                <i class="fa-solid fa-video"></i> Activate Scan
+            </button>
+        </div>
+
+        <button type="submit" id="submit-assessment" class="btn btn-primary w-full mt-6 py-4 text-lg">
+            <i class="fa-solid fa-microscope"></i> Run Neural Diagnostic
+        </button>
+    </form>
+</div>
+{% endblock %}
